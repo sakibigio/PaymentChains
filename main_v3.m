@@ -12,7 +12,7 @@ beta =0.95; % Discount factor
 B_bar=1/(1-beta); 
 fontsize=16;
 
-% Colors
+% Plot Specs
 color_t1=[0.7 0.7 0.7];
 color_t0=[0.0 0.0 0.6];
 color_arrow=[0 0 0];
