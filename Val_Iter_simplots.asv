@@ -1,0 +1,72 @@
+function []=Val_iter_simplots(hist);
+% Color Specs
+color_t0=[0.0 0.0 0.6];
+linethick=3;
+fontsize=16;
+time=1:length(hist.B_hist);
+% color_t1=[0.7 0.7 0.7];
+
+% %% Main Simulation
+% B_tilde_rho= 0.915 ; % mean reversal rate
+% B_tilde_init=0.0 ;
+% B_tilde_ss  = 0.1*B_bar        ;
+% B_star      = Bstar(B_tilde_ss);
+% B0          = B_star/2         ; 
+% 
+% % Example 1: Violent Crunch
+% T_pre      = 1  ; index_pre=1:T_pre;
+% T_crunch   = 20  ; index_crunch=T_pre+1:T_pre+T_crunch;
+% T_rec      = 60  ; index_rec=T_pre+T_crunch+1:T_pre+T_crunch+T_rec+1; 
+% T_post     = 5   ; index_post=T_pre+T_crunch+T_rec++1:T_pre+T_crunch+T_rec+T_post;
+% 
+% % Initial Values
+% B_tilde_t   = [ones(1,T_pre)*B_tilde_ss zeros(1,T_crunch+T_rec)+B_tilde_init ones(1,T_post)*B_tilde_ss]';
+% B_tilde_v   = B_tilde_t;
+% 
+% % Example #1: Violent Transitions
+% % T = length(B_tilde_t);
+% sim_violent=sim_mod(B_tilde_t,params,B0);
+% 
+% % Example 2: Smooth Transition  
+% % B_tilde_t   = [B_tilde_ss*ones(1,T_pre) zeros(1,T_crunch) B_tilde_ss-B_tilde_rho.^(1:T_rec)*B_tilde_ss ones(1,T_post)*B_tilde_ss]';
+% B_tilde_t   = [ones(1,T_pre)*B_tilde_ss zeros(1,T_crunch)+B_tilde_init B_tilde_ss-B_tilde_rho.^(1:T_rec)*(B_tilde_ss-B_tilde_init) ones(1,T_post)*B_tilde_ss]';
+% B_tilde_s   = B_tilde_t;
+% T= length(B_tilde_t);
+% sim_smooth=sim_mod(B_tilde_t,params,B0);
+
+% Plot Specs
+varlist={'B_hist','C_hist','X_hist','S_hist'};
+vartaglist={'$B_t$','$C_t$','$S_t$','$X_hist$'};
+printlist={'fig_path_B','fig_path_C','fig_path_S','fig_path_X'};
+for vv=1:numel(varlist)
+    var_s=hist.(varlist{vv});
+    vartag=vartaglist{vv};
+    
+    figure;
+    title(string(vartag),'Interpreter','latex','FontSize',fontsize); hold on; grid on; 
+    % axis tight;
+    % plot(index_pre,var_s(index_pre),'LineWidth',linethick,'LineStyle','-','Color',color_t0); hold on; 
+    scatter(ones(1,),var_s(1,1:end),'MarkerFaceColor','w','MarkerEdgeColor',color_t0); 
+    plot(time,var_s,'LineWidth',linethick,'LineStyle','-','Color',color_t0); 
+    % plot(index_crunch-1,var_s(index_crunch),'LineWidth',linethick,'LineStyle','-','Color',color_t0); 
+    % scatter(index_crunch(end)-1,var_s(index_crunch(end)),'MarkerFaceColor','w','MarkerEdgeColor',color_t0); 
+    % scatter(index_crunch(end)-1,var_s(index_crunch(end)+1),'filled','MarkerFaceColor',color_t0,'MarkerEdgeColor',color_t0); 
+    % plot(index_rec-2,var_s(index_rec),'LineWidth',linethick,'LineStyle','-','Color',color_t0); 
+    % scatter(index_rec(end)-2,var_s(index_rec(end)),'MarkerFaceColor','w','MarkerEdgeColor',color_t0); 
+    % scatter(index_rec(end)-2,var_s(index_rec(end)),'MarkerFaceColor',color_t0,'MarkerEdgeColor',color_t0);
+    % plot(index_post-3,var_s(index_post),'LineWidth',linethick,'LineStyle','-','Color',color_t0); grid on; % axis tight;
+    % scatter(index_post(end)-3,var_s(index_post(end)),'MarkerFaceColor','w','MarkerEdgeColor',color_t0); 
+    % scatter(index_post(end)-3,var_s(index_post(end)),'MarkerFaceColor',color_t0,'MarkerEdgeColor',color_t0);
+    % scatter(index_post(end)-3,var_s(index_post(end)),'>','filled','MarkerFaceColor',color_t0); 
+    ybound=ylim;
+    % line([index_pre(end) index_pre(end)],ybound,'LineStyle',':','Color',[0.3 0.3 0.3]); 
+    % line([index_crunch(end)-1 index_crunch(end)-1],ybound,'LineStyle',':','Color',[0.3 0.3 0.3]); 
+    % line([index_rec(end)-2 index_rec(end)-2],ybound,'LineStyle',':','Color',[0.3 0.3 0.3]); 
+    % line([index_post(end)-3 index_post(end)-3],ybound,'LineStyle',':','Color',[0.3 0.3 0.3]);
+    xlabel('Time','interpreter','latex');
+    if 1>1
+        legend('Violent Transition','Smooth Transition','Interpreter','Latex','FontSize',fontsize,'Box','off','Location','NorthWest');
+    end
+    orient landscape;
+    eval(['saveas(gcf,''' printlist{vv} ''',''pdf'');']);
+end

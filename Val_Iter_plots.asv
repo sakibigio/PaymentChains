@@ -1,0 +1,131 @@
+% Val_Iter_plot.m
+function []=Val_Iter_plots(params,funcs);
+%% Main Solution Plots
+% Color Specs
+color_t1=[0.7 0.7 0.7];
+color_t0=[0.0 0.0 0.6];
+
+% Unpacking
+val_high=funcs.val_high;
+val_low=funcs.val_low;
+Bstar=params.Bstar;
+Bast=params.Bast;
+B_tilde=params.B_tilde;
+b_bar=params.b_bar;
+C_out=policies.C_out;
+S_out=policies.C_out;
+X_out=policies.C_out;
+Bp_out=policies.Bp_out;
+C_low=funcs.C_low;
+
+% Plot Solutions - Worker Problem
+figure
+% Colors
+fplot(@(B) val_high(B),range,'LineWidth',1.5,'LineStyle','-','Color',color_t0); hold on; axis tight;
+fplot(@(B) val_low(B),range,'LineWidth',1.5,'LineStyle','-','Color',color_t1); grid on;
+% fplot(@(B) val_high(B)+log(1/q)/(1-beta),range,'LineWidth',3,'LineStyle',':','Color',color_t1); hold on; axis tight;
+plot(B_vec,V0,'LineWidth',2,'LineStyle','-','Color','k'); drawnow;
+legend('$\bar{V}$','$\underbar{V}$','$V_ss(B,\tilde{B})$','Interpreter','Latex','AutoUpdate','off','Box','Off')
+yvals=ylim; xvals=xlim;
+set(gca,'XTick',Bstar,'XTickLabel',[]);
+set(gca,'YTick',[yvals(1) yvals(2)],'YTickLabel',[]);
+yTicks = get(gca,'ytick');
+xTicks = get(gca, 'xtick');
+grid on; yvals=ylim; line([Bstar Bstar],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'LineStyle','--');
+grid on; yvals=ylim; line([Bast Bast],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'LineStyle','--');
+grid on; yvals=ylim; line([B_tilde B_tilde],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle','-.'); grid minor;
+% grid on; yvals=ylim; line([B_exit B_exit],[yvals(1) yvals(2)],'Color',[0.5 0.0 0.0],'LineWidth',1,'LineStyle','-.'); grid minor;
+grid on; yvals=ylim; line([B_exit_num B_exit_num],[yvals(1) yvals(2)],'Color',[0.5 0.0 0.0],'LineWidth',1,'LineStyle','-.'); grid minor;
+
+% grid on; yvals=ylim; line([Bhat(B_tilde,B_tilde) Bhat(B_tilde,B_tilde)],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle',':');
+text(xTicks(1),yTicks(1)-1,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+text(Bast,yTicks(1)-1,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+text(B_tilde,yTicks(1)-1,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(b_bar,yTicks(1)-1,'$\bar{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(B_exit_num,yTicks(1)-1,'$B^{h}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+printit=0; grid on;
+if printit==1
+    orient landscape;
+    % saveas(gcf,'F_valuefunction','pdf');
+    ax= gca;
+    exportgraphics(ax,'F_valuefunction.pdf','BackgroundColor','none');
+end
+
+%% Consumption Policy Actual
+figure
+plot(B_vec,C_out,'LineWidth',2,'LineStyle','-','Color','k'); drawnow; grid on; hold on;
+plot(B_vec,C_low(B_vec),'LineWidth',2,'LineStyle',':','Color','k'); 
+legend('$C(B;\tilde{B}=0)$','$C(B;\tilde{B}>0)$','Interpreter','Latex','AutoUpdate','off','Box','Off')
+yvals=ylim; xvals=xlim;
+set(gca,'XTick',Bstar,'XTickLabel',[]);
+set(gca,'YTick',[yvals(1) yvals(2)],'YTickLabel',[]);
+yTicks = get(gca,'ytick');
+xTicks = get(gca, 'xtick');
+grid on; yvals=ylim; line([Bstar Bstar],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'LineStyle','--');
+grid on; yvals=ylim; line([Bast Bast],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'LineStyle','--');
+grid on; yvals=ylim; line([B_tilde B_tilde],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle','-.'); grid minor;
+% grid on; yvals=ylim; line([B_exit B_exit],[yvals(1) yvals(2)],'Color',[0.5 0.0 0.0],'LineWidth',1,'LineStyle','-.'); grid minor;
+grid on; yvals=ylim; line([B_exit_num B_exit_num],[yvals(1) yvals(2)],'Color',[0.5 0.0 0.0],'LineWidth',1,'LineStyle','-.'); grid minor;
+% grid on; yvals=ylim; line([Bhat(B_tilde,B_tilde) Bhat(B_tilde,B_tilde)],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle',':');
+text(xTicks(1),yTicks(1)-0.1,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','bottom','interpreter', 'latex');
+text(Bast,yTicks(1)-0.1,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','bottom','interpreter', 'latex');
+text(B_tilde,yTicks(1)-0.1,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','bottom','interpreter', 'latex'); hold on;
+
+
+%% Consumption Policy - Split
+figure
+plot(B_vec,S_out,'LineWidth',2,'LineStyle','-','Color','k'); drawnow; grid on; hold on;
+plot(B_vec,X_out,'LineWidth',2,'LineStyle','-','Color',[0.7 0.7 0.7]); drawnow; grid on; hold on;
+plot(B_vec,C_low(B_vec),'LineWidth',2,'LineStyle',':','Color','k'); 
+legend('$S^{w}(B)$','$X^{w}(B)$','$\underbar{C}(B)$','Interpreter','Latex','AutoUpdate','off','Box','Off')
+yvals=ylim; xvals=xlim;
+set(gca,'XTick',Bstar,'XTickLabel',[]);
+set(gca,'YTick',[yvals(1) yvals(2)],'YTickLabel',[]);
+yTicks = get(gca,'ytick');
+xTicks = get(gca, 'xtick');
+yvals=ylim; line([Bstar Bstar],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'LineStyle','--');
+yvals=ylim; line([Bast Bast],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'LineStyle','--');
+yvals=ylim; line([B_tilde B_tilde],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle','-.'); grid minor;
+yvals=ylim; line([B_exit_num B_exit_num],[yvals(1) yvals(2)],'Color',[0.5 0.0 0.0],'LineWidth',1,'LineStyle','-.'); grid minor;
+text(xTicks(1),yTicks(1)-0.205,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+text(Bast,yTicks(1)-0.025,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+text(B_tilde,yTicks(1)-0.025,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(b_bar,yTicks(1)-0.025,'$\bar{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(B_exit_num,yTicks(1)-0.025,'$B^{h}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+grid on;
+if printit==1
+    orient landscape;
+    ax = gca;
+    exportgraphics(ax,'F_cons.pdf','BackgroundColor','none');
+%     saveas(gcf,'F_cons','pdf');
+end
+
+% Debt Policy
+figure
+plot(B_vec,Bp_out,'LineWidth',2,'LineStyle','-','Color','k'); grid on; drawnow; hold on;
+plot(B_vec,B_vec,'LineWidth',2,'LineStyle',':','Color','k');
+legend('$B''$','$B$','Interpreter','Latex','AutoUpdate','off','Box','Off','Location','northwest')
+yvals=ylim; xvals=xlim;
+set(gca,'XTick',Bstar,'XTickLabel',[]);
+set(gca,'YTick',[yvals(1) yvals(2)],'YTickLabel',[]);
+yTicks = get(gca,'ytick');
+xTicks = get(gca, 'xtick');
+line([xvals(1) xvals(2)],[Bstar Bstar],'Color','k','LineWidth',1,'LineStyle',':');
+line([xvals(1) xvals(2)],[B_tilde B_tilde],'Color','k','LineWidth',1,'LineStyle',':');
+yvals=ylim; line([Bstar Bstar],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'LineStyle','--');
+yvals=ylim; line([Bast Bast],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'LineStyle','--');
+yvals=ylim; line([B_tilde B_tilde],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle','-.'); % grid minor;
+yvals=ylim; line([B_exit_num B_exit_num],[yvals(1) yvals(2)],'Color',[0.5 0.0 0.0],'LineWidth',1,'LineStyle','-.'); % grid minor;
+% grid on; yvals=ylim; line([Bhat(B_tilde,B_tilde) Bhat(B_tilde,B_tilde)],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle',':');
+text(xTicks(1),yTicks(1)-0.3,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+text(Bast,yTicks(1)-0.3,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+text(B_tilde,yTicks(1)-0.3,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(b_bar,yTicks(1)-0.3,'$\bar{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(B_exit_num,yTicks(1)-0.3,'$B^{h}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+if printit==1    
+    orient landscape;
+  %  set(gca,'LooseInset',get(gca,'TightInset'));
+  %  saveas(gcf,'F_bprime','pdf');
+    ax = gca;
+    exportgraphics(ax,'F_bprime.pdf','BackgroundColor','none');
+end
