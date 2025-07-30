@@ -117,7 +117,6 @@ params.mu_Z=mu_Z;
 params.q_Z=q_Z;
 params.X_w=X_w;
 params.Y_Z=Y_Z;
-params.q_Z=q_Z;
 params.beta=beta; 
 params.delta=delta;
 params.Q_Z=Q_Z;
@@ -126,7 +125,6 @@ params.Qq_B=Qq_B;
 params.Bstar=Bstar;
 params.Bast=Bast;
 params.B_p_res=B_p_res;
-
 params.B_Ram=B_Ram;
 params.P=P;
 
@@ -652,7 +650,6 @@ end
 B_ss_smooth=sim_smooth.B_t(end);
 theta_smooth=1-(1-beta)*B_ss_smooth;
 sim_p_smooth=sim_planner(B_tilde_s,theta_smooth,params,B0);
-color_t1=[0.6 0.4 0.4];
 color_t1=[0.6 0.4 0.4];
 % Main Simulation
 printlist={'fig3_tildeB','fig3_B','fig3_R','fig3_C','fig3_S','fig3_mu','fig3_q','fig3_X','fig3_Y'};
