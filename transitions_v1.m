@@ -545,7 +545,7 @@ B0          = B_star/2         ;
 T_pre      = 10  ; index_pre=1:T_pre;
 T_crunch   = 20  ; index_crunch=T_pre+1:T_pre+T_crunch;
 T_rec      = 60  ; index_rec=T_pre+T_crunch+1:T_pre+T_crunch+T_rec+1; 
-T_post     = 5   ; index_post=T_pre+T_crunch+T_rec++1:T_pre+T_crunch+T_rec+T_post;
+T_post = 5; index_post = T_pre + T_crunch + T_rec + 1 : T_pre + T_crunch + T_rec + T_post;
 
 % Initial Values
 B_tilde_t   = [ones(1,T_pre)*B_tilde_ss zeros(1,T_crunch+T_rec)+B_tilde_init ones(1,T_post)*B_tilde_ss]';
