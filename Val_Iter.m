@@ -26,10 +26,6 @@ Val_Iter_functions;
 %% Main Iteration
 [V0,policies,B_exit_num]=solveValueFunction(B_vec,funcs,params);
 
-%% Computing Conjectured Value after which you do not exit
-% Tv_iter=Tv(B_vec,Bast);
-% [V_Bast,I]=max(Tv_iter(Tv_iter==real(Tv_iter)));
-
 %% Main Plots
 Val_Iter_plots(params, funcs, V0, policies, B_exit_num);
 

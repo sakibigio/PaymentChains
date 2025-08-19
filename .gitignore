@@ -1,0 +1,78 @@
+###########################
+# LaTeX build artifacts
+###########################
+
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.xdv
+*~   # backup files
+*.pdf  # comment out if you want to track final PDFs
+
+###########################
+# MATLAB
+###########################
+
+*.asv        # Auto-saved versions
+*.autosave
+*.mex*
+*.mdl.*
+*.slxc
+*.slprj/
+*.sldd
+*.mlappinstall
+*.fig        # MATLAB figure files (unless explicitly versioned)
+*.mat        # Data files (optional – comment out if you want to track them)
+*.log
+
+###########################
+# Julia
+###########################
+
+# compiled packages
+.julia/compiled/
+.julia/packages/
+.julia/environments/*/Manifest.toml
+.julia/environments/*/Project.toml
+
+# project environments
+Manifest.toml
+Project.toml
+
+# Jupyter notebooks (optional)
+*.ipynb_checkpoints/
+
+###########################
+# macOS & system files
+###########################
+
+.DS_Store
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+###########################
+# Editor / IDE configs
+###########################
+
+# VS Code
+.vscode/
+
+# Emacs / Vim / Sublime / JetBrains
+*~
+*.swp
+*.swo
+.idea/

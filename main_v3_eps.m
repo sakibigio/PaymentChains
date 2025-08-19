@@ -3,7 +3,7 @@
 clear; close all;
 
 % Code Specs
-printit=1; % Save plots into eps
+printit=0; % Save plots into eps
 plotit=0; % 1 if plot needed
 
 %% Parameter Set
