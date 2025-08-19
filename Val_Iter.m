@@ -4,7 +4,7 @@
 clear; close all;
 params.tol=10e-6;
 params.printinfo=0;
-params.printit=0;
+params.printit=1;
 
 %%%%%%%%%%%%%
 % Parameters
@@ -30,15 +30,15 @@ Val_Iter_functions;
 Val_Iter_plots(params, funcs, V0, policies, B_exit_num);
 
 %% Simulated Paths
-T=25; % periods
-init_bs = (350:100:850); % initial conditions
+T=10; % periods
+init_bs = (350:150:800); % initial conditions
 % init_bs = [10 N_b-10 N_b/2]; % initial conditions
 
 % compute histories
 [hist]=Val_iter_sim(T,init_bs,B_vec,policies);
 
 % plot histories
-Val_Iter_simplots(hist);
+Val_Iter_simplots(hist,params,B_exit_num);
 
 %% Val Iter Tests
 Val_Iter_tests;

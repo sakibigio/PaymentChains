@@ -1,6 +1,6 @@
 function []=Val_Iter_simplots(hist,params,B_exit_num)
 % print options
-printit=params.printit;
+printit=0;
 
 % Color Specs
 color_t0=[0.0 0.0 0.6];
@@ -30,7 +30,7 @@ for vv=1:numel(varlist)
     figure('Name',string(vartag));
     title(string(vartag),'Interpreter','latex','FontSize',fontsize); hold on; grid on; 
     plot(time,var_s,'LineWidth',linethick); 
-    linestyleorder("mixedstyles");
+ %   linestyleorder("mixedstyles");
     colororder(newcolors);
     scatter(ones(1,N_c),var_s(1,1:end),marker_size,'MarkerFaceColor','w','MarkerEdgeColor',color_t0);
     scatter(time(end),var_s(end,1:end),marker_size,'>','filled','MarkerFaceColor','w','MarkerEdgeColor','k');
@@ -38,23 +38,18 @@ for vv=1:numel(varlist)
     xlabel('Time (t)','interpreter','latex');
     if vv==1
         yvals=ylim; xvals=xlim;
-        set(gca,'YTick',params.Bstar,'YTickLabel',[]);
-   %     set(gca,'YTick',params.Bast,'YTickLabel',[]);
-        set(gca,'YTick',params.B_tilde,'YTickLabel',[]);
-        set(gca,'YTick',params.b_bar,'YTickLabel',[]);
-        set(gca,'YTick',B_exit_num,'YTickLabel',[]);
-        set(gca,'XTick',[xvals(1) xvals(2)],'XTickLabel',[]);
+        set(gca,'XTick',params.Bstar,'XTickLabel',[]);
+        set(gca,'YTick',[yvals(1) yvals(2)],'YTickLabel',[]);
         yTicks = get(gca,'ytick');
-        xTicks = get(gca,'xtick');
+        xTicks = get(gca, 'xtick');
         text(xTicks(1)-1,params.Bstar,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
-    %    text(xTicks(1)-1,params.Bast,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+        text(xTicks(1)-1,params.Bast,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
         text(xTicks(1)-1,params.B_tilde,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
         text(xTicks(1)-1,params.b_bar,'$\bar{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
         text(xTicks(1)-1,B_exit_num,'$B^{h}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
-        line([time(1) time(end)],[B_exit_num B_exit_num],'Color','k','LineWidth',1,'LineStyle','--');
-        line([time(1) time(end)],[params.B_tilde params.B_tilde],'Color','k','LineWidth',1,'LineStyle','--');
-    %    line([time(1) time(end)],[params.Bast params.Bast],'Color','k','LineWidth',1,'LineStyle','--');
+                line([time(1) time(end)],[B_exit_num B_exit_num],'Color','k','LineWidth',1,'LineStyle','--');
         line([time(1) time(end)],[params.Bstar params.Bstar],'Color','k','LineWidth',1,'LineStyle','--');
+
     end
     if printit==1
         orient landscape;

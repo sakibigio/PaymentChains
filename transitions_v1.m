@@ -38,7 +38,7 @@ B_ast_aux=Bast(B_tilde_p);
 N_t=8;
 
 % Baseline Version plots
-if plotit==2
+if plotit==1
     Plots_AggregateEuler;
 end
 
@@ -211,7 +211,6 @@ for vv=1:numel(varlist)
         eval(['saveas(gcf,''' printlist{vv} ''',''pdf'');']);
     end
 end
-close all;
 
 %% Calling Functions
 % Transition plot functions
