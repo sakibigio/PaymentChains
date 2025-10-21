@@ -1,0 +1,46 @@
+total 21080
+drwxr-xr-x@ 45 sakibigio  staff      1440 Oct 21 16:34 .
+drwxr-xr-x@ 16 sakibigio  staff       512 Sep 23 13:01 ..
+-rw-r--r--@  1 sakibigio  staff      6148 Oct 21 16:33 .DS_Store
+drwxr-xr-x@ 16 sakibigio  staff       512 Oct 21 16:34 .git
+-rw-r--r--@  1 sakibigio  staff      1161 Jul 30 11:53 .gitignore
+-rw-r--r--@  1 sakibigio  staff      1462 Jul 31 10:31 B_prima.m
+-rw-r--r--@  1 sakibigio  staff       165 Oct 20 18:18 CalA.m
+drwxr-xr-x@ 15 sakibigio  staff       480 Oct 20 18:18 ContinuousTimeSetting
+-rw-r--r--   1 sakibigio  staff         0 Oct 21 16:34 file_list.txt
+-rw-r--r--@  1 sakibigio  staff      3757 Sep 11 14:54 main.asv
+drwxr-xr-x@ 45 sakibigio  staff      1440 Oct 20 18:18 Matlab Figures
+drwxr-xr-x   4 sakibigio  staff       128 Oct 21 16:32 Old Codes
+drwxr-xr-x@ 67 sakibigio  staff      2144 Oct 21 16:31 Old Figures
+-rw-r--r--@  1 sakibigio  staff     17156 Oct 20 18:27 Planner_v3.m
+-rw-r--r--@  1 sakibigio  staff      1723 Aug 21 09:45 plot_arrows_along_path.m
+-rw-r--r--@  1 sakibigio  staff     11667 Sep 18 21:52 plot_chains_TFP.m
+-rw-r--r--@  1 sakibigio  staff      2938 Aug 19 09:49 plot_comp.m
+-rw-r--r--@  1 sakibigio  staff      1804 Aug 20 14:38 plot_comp2.m
+-rw-r--r--@  1 sakibigio  staff      2610 Aug 21 10:06 plot_filled_arrows_along_path.m
+-rw-r--r--@  1 sakibigio  staff       458 Aug 19 14:38 Plot_Migration.m
+-rw-r--r--@  1 sakibigio  staff      1931 Aug 20 09:45 plot_path.m
+-rw-r--r--@  1 sakibigio  staff     10907 Aug 21 14:28 Plots_AggregateEuler.m
+-rw-r--r--@  1 sakibigio  staff      5363 Aug 21 14:23 Plots_SteadyState_3d.m
+-rw-r--r--@  1 sakibigio  staff      1092 Jul 30 15:30 PlotTest_Equilibrium.m
+-rw-r--r--@  1 sakibigio  staff  10542165 Jul 25 12:05 production_example.mat
+-rw-r--r--@  1 sakibigio  staff       330 Jul 30 14:49 q_mu.m
+-rw-r--r--@  1 sakibigio  staff      1808 Aug 19 11:45 RAEDME.md
+-rw-r--r--@  1 sakibigio  staff      1808 Aug 19 11:46 README.md
+-rw-r--r--@  1 sakibigio  staff      1297 Aug  8 09:30 sim_mod.m
+-rw-r--r--@  1 sakibigio  staff      1468 Aug 19 08:37 sim_planner.m
+-rw-r--r--@  1 sakibigio  staff      2617 Jul 30 14:39 Trans_function.m
+-rw-r--r--@  1 sakibigio  staff      5426 Aug 19 08:38 Trans_functions.m
+-rw-r--r--@  1 sakibigio  staff       223 Aug 19 10:40 Trans_params.m
+-rw-r--r--@  1 sakibigio  staff         4 Aug 19 15:47 Trans_Plot_functions.m
+-rw-r--r--@  1 sakibigio  staff     10743 Aug 21 14:11 transitions_v1.m
+-rw-r--r--@  1 sakibigio  staff      1145 Jul 29 11:38 Val_Iter_functions.m
+-rw-r--r--@  1 sakibigio  staff       461 Jul 29 11:04 Val_Iter_params.m
+-rw-r--r--@  1 sakibigio  staff      8596 Sep 10 12:51 Val_Iter_plots.m
+-rw-r--r--@  1 sakibigio  staff     22856 Aug 21 11:18 Val_Iter_production_2d_v2.m
+-rw-r--r--@  1 sakibigio  staff      5565 Jun 24 17:11 Val_Iter_production_2d.m
+-rw-r--r--@  1 sakibigio  staff      5219 Jun 24 14:49 Val_Iter_production.m
+-rw-r--r--@  1 sakibigio  staff      1154 Jul 30 08:14 Val_iter_sim.m
+-rw-r--r--@  1 sakibigio  staff      3464 Aug 19 15:32 Val_Iter_simplots.m
+-rw-r--r--@  1 sakibigio  staff     14984 Jul 30 11:29 Val_Iter_tests.m
+-rw-r--r--@  1 sakibigio  staff      2686 Sep 10 12:47 Val_Iter.m
