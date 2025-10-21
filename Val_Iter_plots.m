@@ -1,7 +1,7 @@
-% Val_Iter_plot.m
-function []=Val_Iter_plots(params,funcs, V0, policies, B_exit_num)
-
 %% Main Solution Plots
+function []=Val_Iter_plots(params,funcs, V0, policies, B_exit_num)
+printit=params.printit;
+
 % Color Specs
 color_t0=[0.0 0.0 0.6];
 color_t1=[0.7 0.7 0.7];
@@ -27,10 +27,10 @@ B_vec=linspace(range(1),range(end),N_b); % grid space
 % Plot Solutions - Worker Problem
 figure
 fplot(@(B) val_high(B),range,'LineWidth',1.5,'LineStyle','-','Color',color_t0); hold on; axis tight;
-fplot(@(B) val_low(B),range,'LineWidth',1.5,'LineStyle','-','Color',color_t1); grid on;
+fplot(@(B) val_low(B) ,range,'LineWidth',1.5,'LineStyle','-','Color',color_t1); grid on;
 % fplot(@(B) val_high(B)+log(1/q)/(1-beta),range,'LineWidth',3,'LineStyle',':','Color',color_t1); hold on; axis tight;
 plot(B_vec,V0,'LineWidth',2,'LineStyle','-','Color','k'); drawnow;
-legend('$\bar{V}$','$\underbar{V}$','$V_ss(B,\tilde{B})$','Interpreter','Latex','AutoUpdate','off','Box','Off')
+legend('$\bar{V}$','$\underbar{V}$','$V_{ss}(B,\tilde{B})$','Interpreter','Latex','AutoUpdate','off','Box','Off')
 yvals=ylim; xvals=xlim;
 set(gca,'XTick',Bstar,'XTickLabel',[]);
 set(gca,'YTick',[yvals(1) yvals(2)],'YTickLabel',[]);
@@ -47,12 +47,12 @@ text(Bast,yTicks(1)-1,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','V
 text(B_tilde,yTicks(1)-1,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
 text(b_bar,yTicks(1)-1,'$\bar{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
 text(B_exit_num,yTicks(1)-1,'$B^{h}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
-printit=0; grid on;
+grid on;
 if printit==1
     orient landscape;
     % saveas(gcf,'F_valuefunction','pdf');
     ax= gca;
-    exportgraphics(ax,'F_valuefunction.pdf','BackgroundColor','none');
+    exportgraphics(ax,[params.folder 'F_valuefunction.pdf'],'BackgroundColor','none');
 end
 
 %% Consumption Policy Actual
@@ -100,7 +100,7 @@ grid on;
 if printit==1
     orient landscape;
     ax = gca;
-    exportgraphics(ax,'F_cons.pdf','BackgroundColor','none');
+    exportgraphics(ax,[params.folder 'F_cons.pdf'],'BackgroundColor','none');
 %     saveas(gcf,'F_cons','pdf');
 end
 
@@ -121,15 +121,15 @@ yvals=ylim; line([Bast Bast],[yvals(1) yvals(2)],'Color','k','LineWidth',1,'Line
 yvals=ylim; line([B_tilde B_tilde],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle','-.'); % grid minor;
 yvals=ylim; line([B_exit_num B_exit_num],[yvals(1) yvals(2)],'Color',[0.5 0.0 0.0],'LineWidth',1,'LineStyle','-.'); % grid minor;
 % grid on; yvals=ylim; line([Bhat(B_tilde,B_tilde) Bhat(B_tilde,B_tilde)],[yvals(1) yvals(2)],'Color',[0.5 0.5 0.5],'LineWidth',1,'LineStyle',':');
-text(xTicks(1),yTicks(1)-0.3,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
-text(Bast,yTicks(1)-0.3,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
-text(B_tilde,yTicks(1)-0.3,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
-text(b_bar,yTicks(1)-0.3,'$\bar{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
-text(B_exit_num,yTicks(1)-0.3,'$B^{h}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(xTicks(1),yTicks(1)-0.1,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+text(Bast,yTicks(1)-0.1,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14);
+text(B_tilde,yTicks(1)-0.1,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(b_bar,yTicks(1)-0.1,'$\bar{B}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
+text(B_exit_num,yTicks(1)-0.1,'$B^{h}$', 'HorizontalAlignment','Center','VerticalAlignment','top','interpreter', 'latex','FontSize',14); hold on;
 if printit==1    
     orient landscape;
   %  set(gca,'LooseInset',get(gca,'TightInset'));
   %  saveas(gcf,'F_bprime','pdf');
     ax = gca;
-    exportgraphics(ax,'F_bprime.pdf','BackgroundColor','none');
+    exportgraphics(ax,[params.folder 'F_bprime.pdf'],'BackgroundColor','none');
 end

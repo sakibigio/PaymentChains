@@ -15,7 +15,7 @@ fontsize=16     ;
 
 %% Equilibrium Functions
 % TFP Function
-% CalA_ex=@(mu,delta) delta/(1-delta)*(1-mu)./mu.*log((1-mu.*delta)./(1-mu));
+CalA_ex=@(mu,delta) delta*(1-mu)/(1-delta*mu);
 if plotit==1
     figure
     fplot(@(x) CalA_ex(x,0.9),[0.01 0.99],'LineWidth',3); xlabel('$\mu$','Interpreter','latex','FontSize',fontsize);
@@ -372,7 +372,7 @@ function A_out=CalA(mu,delta)
     elseif mu==0
         A_out=delta;
     else
-        A_out=delta/(1-delta)*(1-mu)./mu.*log((1-mu.*delta)./(1-mu));
+        A_out=delta*(1-mu)/(1-delta*mu);
     end
 end
 

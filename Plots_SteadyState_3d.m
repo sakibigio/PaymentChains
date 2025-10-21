@@ -27,7 +27,7 @@ B_vec<Bast(B_tilde)
 plot(B_vec(index1),R_vec(index1),'LineWidth',2,'Color',color_t0); axis tight; grid on; hold on;
 plot(B_vec(index2),R_vec(index2),'LineWidth',2,'Color',color_t0); grid on;  
 plot(B_vec(index3),R_vec(index3),'LineWidth',2,'Color',color_t0); grid on;  
-title('$R(B)$','interpreter', 'latex'); 
+% title('$R(B)$','interpreter', 'latex'); 
 % legend('$\mathcal{E}_{t}$','$\mathcal{E}_{t+1}$','Box','Off','interpreter', 'latex','Location','northwest','AutoUpdate','off')
 grid on; yvals=ylim; line([Bstar(B_tilde) Bstar(B_tilde)],[yvals(1) yvals(2)],'Color','k','LineWidth',2,'LineStyle','--');
 grid on; yvals=ylim; line([Bast(B_tilde) Bast(B_tilde)],[yvals(1) yvals(2)],'Color','k','LineWidth',2,'LineStyle','--');
@@ -41,23 +41,16 @@ yTicks = get(gca,'ytick');
 xTicks = get(gca, 'xtick');
 
 ax = axis; %Get left most x-position
-%text(ax(1)-0.01,yTicks(2),'$\mathcal{E}_t$', 'HorizontalAlignment','Right','interpreter', 'latex');
-%text(ax(1)-0.15,yTicks(2),'$\mathcal{E}_{t+1}$', 'HorizontalAlignment','Right','interpreter', 'latex');
-%text(ax(2),yTicks(1)-0.1,'$B_{t},B_{t+1}$', 'HorizontalAlignment','Right','interpreter', 'latex');
-% text(ax(1)-0.01,1.45,'$y,i,\delta k$', 'HorizontalAlignment','Right','interpreter', 'latex');
 text(ax(1)-0.01,yTicks(2),'$\beta^{-1}$', 'HorizontalAlignment','Right','interpreter', 'latex');
-text(xTicks(1),yTicks(1)-0.01,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','Middle','interpreter', 'latex');
-text(Bast(B_tilde),yTicks(1)-0.01,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','Middle','interpreter', 'latex');
-text(B_tilde,yTicks(1)-0.01,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','Middle','interpreter', 'latex'); hold on;
+text(xTicks(1),yTicks(1)-0.005,'$B^{\star}$', 'HorizontalAlignment','Center','VerticalAlignment','Middle','interpreter', 'latex');
+text(Bast(B_tilde),yTicks(1)-0.005,'$B^{\ast}(\tilde{B})$', 'HorizontalAlignment','Center','VerticalAlignment','Middle','interpreter', 'latex');
+text(B_tilde,yTicks(1)-0.005,'$\tilde{B}$', 'HorizontalAlignment','Center','VerticalAlignment','Middle','interpreter', 'latex'); hold on;
 if printit==1
     orient landscape;
    %  saveas(gcf,'F_SSRate','pdf');
    ax = gca;
-    exportgraphics(ax,'F_SSRate.pdf','BackgroundColor','none');
+    exportgraphics(ax,[params.folder 'F_SSRate.pdf'],'BackgroundColor','none');
 end
-
-
-
 
 %% Plot for R
 % fix arbitrary debt level. 

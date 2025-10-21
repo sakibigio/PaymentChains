@@ -4,6 +4,6 @@ function A_out=CalA(mu,delta)
     elseif mu==0
         A_out=delta;
     else
-        A_out=delta/(1-delta)*(1-mu)./mu.*log((1-mu.*delta)./(1-mu));
+        A_out=delta*(1-mu)/(1-delta*mu);
     end
 end

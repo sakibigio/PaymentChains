@@ -20,7 +20,7 @@ color_arrow=[0 0 0];
 %% Equilibrium Functions
 % CalA_ex=@(mu) delta/(1-delta)*(1-mu)./mu.*log((1-mu.*delta)./(1-mu));
 if plotit==1
-    CalA_ex=@(mu,delta) delta/(1-delta)*(1-mu)./mu.*log((1-mu.*delta)./(1-mu));
+    CalA_ex=@(mu,delta) delta*(1-mu)/(1-delta*mu);
     figure
     fplot(@(x) CalA_ex(x,0.9),[0.01 0.99],'LineWidth',2,'Color',color_t0); hold on;
     fplot(@(x) CalA_ex(x,0.5),[0.01 0.99],'LineWidth',2,'Color',color_t1); xlabel('$\mu$','Interpreter','latex','FontSize',fontsize);
@@ -36,7 +36,7 @@ if plotit==1
     figure;
     chain=0:1:8;
     mu1=0.6; mu2=0.7;
-    b=bar(chain,[(1-mu1)*mu1.^(chain);(1-mu2)*mu1.^(chain)],'BarWidth',1.2); hold on;
+    b=bar(chain,[(1-mu1)*mu1.^(chain);(1-mu2)*mu2.^(chain)],'BarWidth',1.2); hold on;
     b(1).FaceColor=color_t0;
     b(2).FaceColor=color_t1; xlabel('Chain Length','Interpreter','latex');
     title('Probability Distribution','Interpreter','latex'); grid on; axis tight; 
@@ -50,12 +50,9 @@ if plotit==1
     end
 end
 
-
-
-% q_mu=@(mu) CalA(mu);
 if plotit==1
     figure
-    fplot(q_mu,[0.01 0.99]); xlabel('$\mu$','Interpreter','latex');
+    fplot(@(x) q_mu(x,x),[0.01 0.99]); xlabel('$\mu$','Interpreter','latex');
     title('$q(\mu)$','Interpreter','latex'); grid on; axis tight;
 end
 
@@ -748,7 +745,7 @@ function A_out=CalA(mu,delta)
     elseif mu==0
         A_out=delta;
     else
-        A_out=delta/(1-delta)*(1-mu)./mu.*log((1-mu.*delta)./(1-mu));
+        A_out=delta*(1-mu)/(1-delta*mu);
     end
 end
 

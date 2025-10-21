@@ -5,6 +5,7 @@ clear; close all;
 params.tol=10e-6;
 params.printinfo=0;
 params.printit=1;
+params.folder='Matlab Figures\';
 
 %%%%%%%%%%%%%
 % Parameters
@@ -15,7 +16,7 @@ params.N_b=1000;
 Val_Iter_params;
 
 % Support of values of debt
-range=[-1 params.b_bar-epsilon]    ;
+range=[-1 params.b_bar-0.1]    ;
 B_vec=linspace(range(1),range(end),params.N_b); % grid space
 params.B_vec=B_vec;
 params.range=range;
