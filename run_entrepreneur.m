@@ -1,7 +1,8 @@
 %% Payment Chains
-% (c) 
+% (c) Saki Bigio - Computes Value Function Iteration in "A Theory of
+% Payments Chains"
 % version with only consumption, no production. 
-clear; close all;
+clear; close all; addpath('functions', 'plotting', 'tests');
 params.tol=10e-6;
 params.printinfo=0;
 params.printit=1;
@@ -33,7 +34,6 @@ Val_Iter_plots(params, funcs, V0, policies, B_exit_num);
 %% Simulated Paths
 T=10; % periods
 init_bs = (350:150:800); % initial conditions
-% init_bs = [10 N_b-10 N_b/2]; % initial conditions
 
 % compute histories
 [hist]=Val_iter_sim(T,init_bs,B_vec,policies);
@@ -76,12 +76,15 @@ function [V_out,policies,B_exit_num]=solveValueFunction(B_vec,funcs,params)
             bb=bb+1;
             % maximize value function based on cubic spline
             Tv=@(B_p,B) log(C_w(E(B_p,B),B,B_tilde))+params.beta*interp1(B_vec,V0,B_p,'cubic');
+
             % compute all possible values
             Tv_iter=Tv(B_vec,B);
             index=(imag(Tv_iter)==0);
+
             % evaluate at optimum to obtain solution
             [V_out(bb),I]=max(Tv_iter(index));
             Bp_aux=B_vec(index);
+
             % update solutions
             C_out(bb)=C_w(E(Bp_aux(I),B),B,B_tilde);
             S_out(bb)=S_w(E(Bp_aux(I),B),B,B_tilde);
