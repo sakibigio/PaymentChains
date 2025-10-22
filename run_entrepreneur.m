@@ -2,11 +2,14 @@
 % (c) Saki Bigio - Computes Value Function Iteration in "A Theory of
 % Payments Chains"
 % version with only consumption, no production. 
-clear; close all; addpath('functions', 'plotting', 'tests');
+clear; close all; 
+addpath('functions', 'plotting', 'tests');
+params.folder='output/';
+
 params.tol=10e-6;
 params.printinfo=0;
 params.printit=1;
-params.folder='Matlab Figures\';
+
 
 %%%%%%%%%%%%%
 % Parameters

@@ -10,12 +10,15 @@
 % make sure distortion in investment is real
  
 % version with only consumption, no production. 
-clear; close all;
+clear; close all; 
+addpath('functions', 'plotting', 'tests');
+params.folder='output/';
+
+% Internal Usage
 tol=10e-6;
 printinfo=1;
 printit=0;
 plotit=1;
-params.folder='Matlab Figures\';
 
 % Color Choices
 color_t0=[0.0 0.0 0.6];

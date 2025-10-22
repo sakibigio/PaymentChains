@@ -1,5 +1,5 @@
 % === Auto-sync figures to Overleaf ===
-src = 'output/';
+src = 'Matlab Figures/';
 dst = '/Users/sakiclaudia/Dropbox/Apps/Overleaf/Chained Payments/Matlab Figures/';
 
 if ~exist(dst, 'dir')

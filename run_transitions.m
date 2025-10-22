@@ -1,11 +1,13 @@
 %% Payment Crises: Code to Compute Equilibrium Solution 
 % (c) Saki Bigio
 clear; close all;
+clear; close all; 
+addpath('functions', 'plotting', 'tests');
+params.folder='output/';
 
 % Code Specs
 printit=1; % Save plots into PDF
 plotit =1; % 1 if plot needed
-params.folder='Matlab Figures\';
 
 % Plot Specs
 color_t1=[0.7 0.7 0.7];
@@ -65,7 +67,7 @@ fill([delta_vec delta_vec(1)],[B_ast_vec; B_ast_vec(end)],[0.8 0.8 0.99]); grid 
 xlabel('$\delta$','FontSize', 16,'Interpreter','latex');
 ylabel('$B^{\ast}$','FontSize', 16,'Interpreter','latex');
 text(delta_vec(1),B_ast_vec(end),'$\downarrow$ Efficient Region ', 'HorizontalAlignment','Left','VerticalAlignment','top','Rotation',90,'interpreter', 'latex','FontSize',12);
-load("ContinuousTimeSetting/bh_cutoffs_ct.mat")
+load("data/bh_cutoffs_ct.mat")
 hold on;
 plot(delta_vec_ct,-b_h_delta_ct,'Color','k','LineStyle',':'); grid on;
 fill([delta_vec_ct delta_vec_ct(end)],[-b_h_delta_ct; -b_h_delta_ct(1)],[0.9 0.9 0.9]); grid on;

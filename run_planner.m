@@ -1,10 +1,11 @@
 %% Payment Crises: Code to Compute Equilibrium Solution 
 % (c) Saki Bigio
-clear; close all;
-
-% Code Specs
-plotit=0; % 1 if plot needed
-printit=1;
+clear; close all; 
+addpath('functions', 'plotting', 'tests');
+params.tol=10e-6;
+params.printinfo=0;
+params.printit=1;
+params.folder='output/';
 
 %% Parameter Set
 delta=0.9; % Value of discount in production
@@ -140,7 +141,7 @@ for bt_i=1:length(bt_vec);
     B_optvec(bt_i)=B_plan;
     
     % Analytic Solution
-    [B_p,P_val,type]= P_star(B_tilde,Bstar,B_opt,B_opt_x,RamLeftFOC,P,B_RamLeft,beta,delta,theta)
+    [B_p,P_val,type]= P_star(B_tilde,Bstar,B_opt,B_opt_x,RamLeftFOC,P,B_RamLeft,beta,delta,theta);
     B_optvec(bt_i)  = B_p;
     type_vec(bt_i)  = type;
 
